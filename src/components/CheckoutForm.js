@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useForm from "../hooks/useForm";
 
 const initialValue = {
   firstName: "",
@@ -6,7 +7,7 @@ const initialValue = {
   address: "",
   city: "",
   state: "",
-  zip: "",
+  zip: ""
 };
 
 // This form should be handled by a "useForm" custom hook
@@ -15,7 +16,8 @@ const initialValue = {
 
 const CheckoutForm = (props) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [values, setValues] = useState(initialValue);
+  const [values, setValues] = useForm("form", initialValue);
+  console.log(values);
 
   const handleChanges = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -32,27 +34,15 @@ const CheckoutForm = (props) => {
         <h2>Checkout Form</h2>
         <label>
           First Name:
-          <input
-            name="firstName"
-            value={values.firstName}
-            onChange={handleChanges}
-          />
+          <input name="firstName" value={values.firstName} onChange={handleChanges} />
         </label>
         <label>
           Last Name:
-          <input
-            name="lastName"
-            value={values.lastName}
-            onChange={handleChanges}
-          />
+          <input name="lastName" value={values.lastName} onChange={handleChanges} />
         </label>
         <label>
           Address:
-          <input
-            name="address"
-            value={values.address}
-            onChange={handleChanges}
-          />
+          <input name="address" value={values.address} onChange={handleChanges} />
         </label>
         <label>
           City:

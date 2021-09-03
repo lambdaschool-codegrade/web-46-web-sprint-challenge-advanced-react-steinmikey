@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 import PlantList from "./components/PlantList";
 import ShoppingCart from "./components/ShoppingCart";
@@ -38,27 +38,15 @@ function App() {
             <li>
               <NavLink to="/cart">
                 Cart
-                <span className="cart-badge">
-                  {cart.length > 0 && cart.length}
-                </span>
+                <span className="cart-badge">{cart.length > 0 && cart.length}</span>
               </NavLink>
             </li>
           </ul>
         </nav>
-        <Route
-          exact
-          path="/"
-          render={() => <PlantList addToCart={addToCart} />}
-        />
+        <Route exact path="/" render={() => <PlantList addToCart={addToCart} />} />
         <Route
           path="/cart"
-          render={(props) => (
-            <ShoppingCart
-              {...props}
-              cart={cart}
-              removeFromCart={removeFromCart}
-            />
-          )}
+          render={(props) => <ShoppingCart {...props} cart={cart} removeFromCart={removeFromCart} />}
         />
         <Route path="/checkout" component={CheckoutForm} />
       </Router>
